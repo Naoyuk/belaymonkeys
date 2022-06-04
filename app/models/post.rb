@@ -9,4 +9,12 @@ class Post < ApplicationRecord
   # Validations
   validates :date, presence: true
   validates :description, presence: true
+
+  # Enum
+  enum kind_of_climbing: {
+    Trad: 0,
+    Sport: 1,
+    Bouldering: 2,
+    MultiPitched: 3
+  }
 end

@@ -1,0 +1,35 @@
+<h1>New Post</h1>
+
+<div>
+  <%= simple_form_for(@post, data: {turbo: false}) do |f| %>
+    <% if f.object.errors.present? %>
+      <div class="text-red-500 border-red-800 font-bold border-2 p-2 mb-2">
+        <%= f.error_notification %>
+        <%= f.error_notification(
+              message: f.object.errors.full_messages.to_sentence
+            ) %>
+      </div>
+    <% end %>
+
+    <%= f.input :date, html: { class: 'form-control' }, label: 'Date' %>
+    <%= f.input :start_time, html: { class: 'form-control' }, label: 'Start time' %>
+    <%= f.input :end_time, html: { class: 'form-control' }, label: 'End time' %>
+    <%= f.collection_radio_buttons :kind_of_climbing,
+      [[0, 'Trad'], [1, 'Sport'], [2, 'Bouldering'], [3, 'Multi pitches']],
+      :first, :last 
+    %>
+
+    <div class="description">
+      <div class="text-lg font-bold">
+        <%= f.input :description, html: { class: 'form-control' },
+          :as => :text,
+          :input_html => {'rows' => 10, 'cols' => 80},
+          label: false
+        %>
+      </div>
+    </div>
+
+    <%= f.button :submit %>
+
+  <% end %>
+</div>
