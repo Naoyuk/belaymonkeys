@@ -15,13 +15,16 @@
   )
 end
 
+areas = ['Smoke Bluffs', 'Grandwall', 'Murrin Park', 'Cheakamus Canyon']
+
 10.times do |n|
   Post.create!(
     date: Date.new.strftime('%Y-%m-%d'),
     start_time: Time.new.strftime('%H:%M'),
     end_time: Time.new.strftime('%H:%M'), 
+    area: areas[rand(4)],
     kind_of_climbing: 0,
     description: "test#{n}#",
-    user_id: User.first.id
+    user_id: User.find(rand(2) + 1).id
   )
 end
