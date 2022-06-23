@@ -1,10 +1,13 @@
-<% @chat.messages.each do |message| %>
-  <div>
-    <%= message.id %>
-    <%= message.user.email %>
-    <%= simple_format(h(message.body)) %>
-  </div>
-<% end %>
+<div class="py-2 mb-2">
+  <p>Conversation with: <%= @chat.guest.email %></p>
+  <ul>
+    <% @messages.each do |message| %>
+      <li class="<%= message_class(message) %>" <%= dom_id(message) %>>
+        <p><%= simple_format(h(message.body)) %></p>
+      </li>
+    <% end %>
+  </ul>
+</div>
 
 <div>
   <%= form_with(model: @message) do |f| %>

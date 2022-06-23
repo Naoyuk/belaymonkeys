@@ -11,6 +11,7 @@ class ChatsController < ApplicationController
       chat.guest_user_id = current_user.id
       chat.host_user_id = params[:host_user_id]
     end
+    @messages = @chat.messages.where.not(id: nil)
     @message = @chat.messages.build(user_id: current_user.id)
   end
 
