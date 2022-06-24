@@ -11,12 +11,8 @@
 
 <div>
   <%= form_with(model: @message) do |f| %>
-    <div>
-      <%= f.hidden_field :chat_id %>
-    </div>
-    <div>
-      <%= f.hidden_field :user_id %>
-    </div>
+    <%= f.hidden_field :chat_id %>
+    <%= f.hidden_field :user_id %>
     <div>
       <%= f.text_area :body,
         class: 'p-2 border-2 border-solid border-blue-500 rounded-md',
