@@ -1,0 +1,15 @@
+<h1>Responses</h1>
+<div>
+  <% @chats.each do |chat| %>
+    <div class="py-2 mb-2">
+      <p>Conversation with: <%= chat.guest.email %></p>
+      <ul>
+        <% chat.messages.each do |message| %>
+          <li class="<%= message_class(message) %>">
+            <p><%= simple_format(h(message.body)) %></p>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>

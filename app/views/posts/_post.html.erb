@@ -1,9 +1,26 @@
 <div>
-  <p><b><%= post.date %></b></p>
-  <p><%= post.start_time %></p>
-  <p><%= post.end_time %></p>
+  <p><b><%= post.date.to_s(:stamp_list_old) %></b></p>
+  <p><b><%= post.user.email %></b></p>
+  <p><%= post.start_time.to_s(:stamp_list_old) %></p>
+  <p><%= post.end_time.to_s(:stamp_list_old) %></p>
   <p><%= post.area %></p>
   <p><%= post.kind_of_climbing %></p>
   <p><%= post.description %></p>
-  <%#= link_to 'Message', new_message_path(post_id: @post.id, host_user_id: @post.user_id, answerer_user_id: current_user.id), class: 'bg-blue-600 py-3 px-4' %>
+  <% if post.user_id == current_user.id %>
+    <%= link_to "See my post's reaction", chats_path(post_id: post.id),
+                      class: 'px-2 py-1 text-blue-500 border border-blue-500 font-semibold rounded hover:bg-blue-100' %>
+  <% elsif has_messages?(post_id: post.id, host_user_id: post.user_id, guest_user_id: current_user.id) %>
+    <% chat_id = chat_id_by_ids(
+                       post_id: post.id,
+                       host_user_id: post.user_id,
+                       guest_user_id: current_user.id) %>
+    <%= link_to 'Message', chat_path(chat_id),
+                       class: 'px-2 py-1 bg-blue-400 text-white font-semibold rounded hover:bg-blue-500' %>
+  <% else %>
+    <%= link_to 'Message', new_chat_path(
+                        post_id: post.id,
+                        host_user_id: post.user_id,
+                        guest_user_id: current_user.id
+                      ), class: 'px-2 py-1 bg-yellow-400 text-white font-semibold rounded hover:bg-yellow-500' %>
+  <% end %>
 </div>
