@@ -5,7 +5,7 @@ FactoryBot.define do
     date { Date.new.strftime('%Y-%m-%d') }
     start_time { Time.new.strftime('%H:%M') }
     end_time { Time.new.strftime('%H:%M') }
-    kind_of_climbing { 1 }
+    kind_of_climbing { :Bouldering }
     sequence(:description) { |n| "test test#{n}" }
     association :user
   end
