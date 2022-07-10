@@ -2,8 +2,8 @@
 
 FactoryBot.define do
   factory :chat do
-    association :host
-    association :guest
     association :post
+    association :host, factory: :user
+    association :guest, factory: :user
   end
 end

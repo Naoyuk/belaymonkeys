@@ -2,9 +2,9 @@
 
 FactoryBot.define do
   factory :message do
-    body { 'test mesage' }
+    body { 'test text' }
     read { false }
-    association :user
     association :chat
+    association :user
   end
 end
