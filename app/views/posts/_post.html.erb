@@ -1,8 +1,8 @@
 <div>
-  <p><b><%= post.date.to_s(:stamp_list_old) %></b></p>
+  <p><b><%= post.date.to_fs(:stamp_list_old) %></b></p>
   <p><b><%= post.user.email %></b></p>
-  <p><%= post.start_time.to_s(:stamp_list_old) %></p>
-  <p><%= post.end_time.to_s(:stamp_list_old) %></p>
+  <p><%= post.start_time.to_fs(:stamp_list_old) %></p>
+  <p><%= post.end_time.to_fs(:stamp_list_old) %></p>
   <p><%= post.area %></p>
   <p><%= post.kind_of_climbing %></p>
   <p><%= post.description %></p>
