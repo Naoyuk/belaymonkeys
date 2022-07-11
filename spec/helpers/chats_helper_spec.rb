@@ -57,14 +57,4 @@ RSpec.describe ChatsHelper, type: :helper do
       expect(chat_id).to eq false
     end
   end
-
-  describe 'message_class' do
-    context 'when user logged in' do
-      it 'returns class with mb-2, p-2, rounded-md, bg-blue-400 and text-white'
-    end
-
-    context 'when user not logged in' do
-      it 'returns class with mb-2, p-2, rounded-md, bg-gray-200'
-    end
-  end
 end
