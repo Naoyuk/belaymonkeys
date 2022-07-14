@@ -12,8 +12,10 @@ module ChatsHelper
   end
 
   def chat_id_by_ids(post_id: nil, host_user_id: nil, guest_user_id: nil)
+    return false unless post_id && host_user_id && guest_user_id
     chat = Chat.where('post_id = ? and host_user_id = ? and guest_user_id = ?',
                post_id, host_user_id, guest_user_id)
+    return false if chat.size == 0
     chat[0].id
   end
   
