@@ -13,6 +13,7 @@ users = ['Naoyuki', 'Masami', 'Takehiro', 'Alanis']
 users.each do |user|
   User.create!(
     email: "#{user}@example.com",
+    name: user,
     password: "password",
     password_confirmation: "password"
   )
