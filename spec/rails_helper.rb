@@ -67,4 +67,7 @@ RSpec.configure do |config|
   # RSpecでApplicationHelperを使えるようにする
   include ApplicationHelper
   include PostsHelper
+
+  # RSpecでDeviseのHelperを使えるようにする
+  config.include Devise::Test::IntegrationHelpers, type: :request
 end
