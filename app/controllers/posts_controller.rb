@@ -24,6 +24,6 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:date, :start_time, :end_time, :description,
-                                 :kind_of_climbing)
+                                 :area, :kind_of_climbing)
   end
 end

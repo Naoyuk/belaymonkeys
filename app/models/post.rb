@@ -13,10 +13,5 @@ class Post < ApplicationRecord
   validates :description, presence: true
 
   # Enum
-  enum kind_of_climbing: {
-    Trad: 0,
-    Sport: 1,
-    Bouldering: 2,
-    MultiPitched: 3
-  }
+  enum kind_of_climbing: [:trad, :sport, :bouldering, :multipitches]
 end

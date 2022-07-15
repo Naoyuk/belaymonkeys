@@ -18,14 +18,27 @@ module ChatsHelper
     return false if chat.size == 0
     chat[0].id
   end
-  
-  def message_class(message)
-    styles = %w[mb-2 p-2 rounded-md]
-    styles << 'bg-blue-400 text-white' if message.user.id == current_user.id
-    styles << 'bg-gray-200' if message.user.id != current_user.id
 
-    styles_str = ''
-    styles.each{|style| styles_str << style + ' '}
-    styles_str.chop
+  def message_link_to(post)
+    classes = %w[px-2 py-1 rounded font-semibold]
+
+    if post.user_id == current_user.id
+      text = 'See Conversation'
+      path = chats_path(post_id: post.id)
+      classes << 'text-blue-500 border border-blue-500 hover:bg-blue-100'
+    elsif has_messages?( post_id: post.id, host_user_id: post.user_id, guest_user_id: current_user.id)
+      text = 'Message'
+      chat_id = chat_id_by_ids(post_id: post.id, host_user_id: post.user_id, guest_user_id: current_user.id)
+      path = chat_path(chat_id)
+      classes << 'bg-blue-400 text-white hover:bg-blue-500'
+    else
+      text = 'Message'
+      classes << 'bg-yellow-400 text-white hover:bg-yellow-500'
+      path = new_chat_path(post_id: post.id, host_user_id: post.user_id, guest_user_id: current_user.id)
+    end
+
+    link_to(path, class: classes) do
+      text
+    end
   end
 end

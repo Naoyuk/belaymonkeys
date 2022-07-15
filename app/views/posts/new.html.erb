@@ -16,7 +16,7 @@
     <%= f.input :end_time, html: { class: 'form-control' }, label: 'End time' %>
     <%= f.input :area, html: { class: 'form-control' }, label: 'Area' %>
     <%= f.collection_radio_buttons :kind_of_climbing,
-      [[0, 'Trad'], [1, 'Sport'], [2, 'Bouldering'], [3, 'Multi pitches']],
+      [['trad', 'Trad'], ['sport', 'Sport'], ['bouldering', 'Bouldering'], ['multipitches', 'Multi pitches']],
       :first, :last 
     %>
 

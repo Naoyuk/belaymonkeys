@@ -15,15 +15,19 @@
   </head>
 
   <body>
-    <section class="py-12 px-6">
-      <%= render "layouts/nav" %>
-      <div class="container mx-auto">
-        <div class="mt-6">
-          <p class="notice"><%= notice %></p>
-          <p class="alert"><%= alert %></p>
-          <%= yield %>
+    <div class="vh-100">
+      <div class="container_fluid">
+        <div class="row">
+          <%= render "layouts/nav" %>
+          <div class="container mx-auto">
+            <div class="mt-6">
+              <p class="notice"><%= notice %></p>
+              <p class="alert"><%= alert %></p>
+              <%= yield %>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
   </body>
 </html>

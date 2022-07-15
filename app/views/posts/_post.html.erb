@@ -1,26 +1,36 @@
-<div>
-  <p><b><%= post.date.to_fs(:stamp_list_old) %></b></p>
-  <p>Posted by: <b><%= post.user.name %></b></p>
-  <p><%= post.start_time.to_fs(:stamp_list_old) %></p>
-  <p><%= post.end_time.to_fs(:stamp_list_old) %></p>
-  <p><%= post.area %></p>
-  <p><%= post.kind_of_climbing %></p>
-  <p><%= post.description %></p>
-  <% if post.user_id == current_user.id %>
-    <%= link_to "See my post's reaction", chats_path(post_id: post.id),
-                      class: 'px-2 py-1 text-blue-500 border border-blue-500 font-semibold rounded hover:bg-blue-100' %>
-  <% elsif has_messages?(post_id: post.id, host_user_id: post.user_id, guest_user_id: current_user.id) %>
-    <% chat_id = chat_id_by_ids(
-                       post_id: post.id,
-                       host_user_id: post.user_id,
-                       guest_user_id: current_user.id) %>
-    <%= link_to 'Message', chat_path(chat_id),
-                       class: 'px-2 py-1 bg-blue-400 text-white font-semibold rounded hover:bg-blue-500' %>
-  <% else %>
-    <%= link_to 'Message', new_chat_path(
-                        post_id: post.id,
-                        host_user_id: post.user_id,
-                        guest_user_id: current_user.id
-                      ), class: 'px-2 py-1 bg-yellow-400 text-white font-semibold rounded hover:bg-yellow-500' %>
-  <% end %>
+<div class="card shadow body m-3 p-3">
+  <div class="card-body">
+    <div class="py-2 border-top">
+      <div class="my-auto">
+        <b><%= post.date.to_fs(:stamp_list_old) %></b>
+        <b><%= post.user.name %></b>
+      </div>
+
+      <div class="my-auto">
+        Date: <%= post.start_time.to_fs(:stamp_list_old) %> ~ <%= post.end_time.to_fs(:stamp_list_old) %>
+      </div>
+
+      <div class="my-auto">
+        Area: <%= post.area %>
+      </div>
+
+      <div class="my-auto">
+        <%= tag.span(climb_type(post.kind_of_climbing), class: climb_class(post.kind_of_climbing)) %>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="my-auto">
+      <%= safe_join(post.description.split("\n"), tag(:br)) %>
+    </div>
+
+    <div class="row py-2 border-top">
+      <div class="my-auto">
+        <div class="d-flex justify-content-end">
+          <%= message_link_to(post) %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

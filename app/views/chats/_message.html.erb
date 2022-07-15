@@ -1,5 +1,4 @@
 <div class="py-2 mb-2">
-  <p>Conversation with: <%= @chat.guest.email %></p>
   <ul>
     <% @messages.each do |message| %>
       <li class="<%= message_class(message) %>" <%= dom_id(message) %>>
