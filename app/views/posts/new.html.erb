@@ -1,7 +1,7 @@
-<h1>New Post</h1>
+<h1 class='text-lg'>New Post</h1>
 
-<div>
-  <%= simple_form_for(@post, data: {turbo: false}) do |f| %>
+<div class='py-2 mb-2'>
+  <%= form_with(model: @post) do |f| %>
     <% if f.object.errors.present? %>
       <div class="text-red-500 border-red-800 font-bold border-2 p-2 mb-2">
         <%= f.error_notification %>
@@ -11,21 +11,34 @@
       </div>
     <% end %>
 
-    <%= f.date_field :date, html: { class: 'form-control' }, label: 'Date' %>
-    <%= f.input :start_time, html: { class: 'form-control' }, label: 'Start time' %>
-    <%= f.input :end_time, html: { class: 'form-control' }, label: 'End time' %>
-    <%= f.input :area, html: { class: 'form-control' }, label: 'Area' %>
-    <%= f.collection_radio_buttons :kind_of_climbing,
-      [['trad', 'Trad'], ['sport', 'Sport'], ['bouldering', 'Bouldering'], ['multipitches', 'Multi pitches']],
-      :first, :last 
-    %>
+    <div class='p-2 my-2'>
+      <%= f.label :date, 'Date' %><br>
+      <%= f.date_field :date, class: form_input_style %>
+    </div>
+
+    <div class='p-2 my-2'>
+      <%= f.time_select :start_time, class: form_input_style %>
+       - 
+      <%= f.time_select :end_time, class: form_input_style %>
+    </div>
+
+    <div class='p-2 my-2'>
+      <%= f.label :area, 'Area' %><br>
+      <%= f.text_field :area, class: form_input_style %>
+    </div>
+
+    <div class='p-2 my-2'>
+      <%= f.collection_radio_buttons :kind_of_climbing,
+        [['trad', 'Trad'], ['sport', 'Sport'], ['bouldering', 'Bouldering'], ['multipitches', 'Multi pitches']],
+        :first, :last 
+      %>
+    </div>
 
     <div class="description">
       <div class="text-lg font-bold">
-        <%= f.input :description, html: { class: 'form-control' },
-          :as => :text,
-          :input_html => {'rows' => 10, 'cols' => 80},
-          label: false
+        <%= f.text_area :description,
+          class: form_input_style,
+          size: "100x5"
         %>
       </div>
     </div>
