@@ -23,7 +23,6 @@ RSpec.describe "Posts", type: :system do
 
       expect(page).to have_content 'New post was successfully created.'
       expect(page).to have_content 'test text'
-      expect(page).to have_content "Posted by: #{user.name}"
     }.to change(user.posts, :count).by(1)
   end
 end
