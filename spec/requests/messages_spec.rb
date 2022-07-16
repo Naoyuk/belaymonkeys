@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Messages", type: :request do
-  describe "POST /create" do
+RSpec.describe 'Messages', type: :request do
+  describe 'POST /create' do
     before do
       @user = FactoryBot.create(:user)
     end
@@ -13,7 +15,7 @@ RSpec.describe "Messages", type: :request do
 
       it 'creates a message' do
         chat = FactoryBot.create(:chat)
-        expect {
+        expect do
           post messages_path, params: {
             message: {
               body: 'test text',
@@ -22,14 +24,14 @@ RSpec.describe "Messages", type: :request do
               user_id: @user.id
             }
           }
-        }.to change(Message, :count).by(1)
+        end.to change(Message, :count).by(1)
       end
     end
 
     context 'when user is not logged in' do
       it 'does not create a message' do
         chat = FactoryBot.create(:chat)
-        expect {
+        expect do
           post messages_path, params: {
             message: {
               body: 'test text',
@@ -38,7 +40,7 @@ RSpec.describe "Messages", type: :request do
               user_id: @user.id
             }
           }
-        }.to change(Message, :count).by(0)
+        end.to change(Message, :count).by(0)
       end
     end
   end

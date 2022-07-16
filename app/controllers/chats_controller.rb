@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChatsController < ApplicationController
   before_action :authenticate_user!
 
@@ -29,7 +31,7 @@ class ChatsController < ApplicationController
     if @chat.save
       redirect_to @chat
     else
-      render 
+      render
     end
   end
 end

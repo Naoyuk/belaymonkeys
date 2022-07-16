@@ -1,11 +1,13 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Chats", type: :request do
+RSpec.describe 'Chats', type: :request do
   before do
     @user = FactoryBot.create(:user)
   end
 
-  describe "GET /index" do
+  describe 'GET /index' do
     context 'when user logged in' do
       before do
         sign_in @user
@@ -60,12 +62,13 @@ RSpec.describe "Chats", type: :request do
         post = FactoryBot.create(:post)
         host = FactoryBot.create(:host)
         guest = FactoryBot.create(:guest)
-        expect {
+        expect do
           get new_chat_path(
             post_id: post.id,
             host_user_id: host.id,
-            guest_user_id: guest.id)
-        }.to change(Chat, :count).by(1)
+            guest_user_id: guest.id
+          )
+        end.to change(Chat, :count).by(1)
         expect(response).to have_http_status '302'
       end
     end

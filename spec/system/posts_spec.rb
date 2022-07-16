@@ -1,6 +1,8 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
-RSpec.describe "Posts", type: :system do
+RSpec.describe 'Posts', type: :system do
   before do
     driven_by(:rack_test)
   end
@@ -14,7 +16,7 @@ RSpec.describe "Posts", type: :system do
     fill_in 'Password', with: user.password
     click_button 'Log in'
 
-    expect {
+    expect do
       click_link 'New Post'
       fill_in 'post[date]', with: 1.day.before
       fill_in 'post[description]', with: 'test text'
@@ -23,6 +25,6 @@ RSpec.describe "Posts", type: :system do
 
       expect(page).to have_content 'New post was successfully created.'
       expect(page).to have_content 'test text'
-    }.to change(user.posts, :count).by(1)
+    end.to change(user.posts, :count).by(1)
   end
 end

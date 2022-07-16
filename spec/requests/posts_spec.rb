@@ -28,14 +28,14 @@ RSpec.describe 'Posts', type: :request do
     end
 
     describe 'POST /create' do
-      it 'creates a post'  do
+      it 'creates a post' do
         post_attributes = FactoryBot.attributes_for(:post)
 
-        expect {
+        expect do
           post posts_path, params: {
             post: post_attributes
           }
-        }.to change(@user.posts, :count).by(1)
+        end.to change(@user.posts, :count).by(1)
       end
     end
   end
