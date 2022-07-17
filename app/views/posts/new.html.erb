@@ -2,14 +2,15 @@
 
 <div class='py-2 mb-2'>
   <%= form_with(model: @post) do |f| %>
-    <%# if f.object.errors.present? %>
+    <% if f.object.errors.present? %>
       <div class="text-red-500 border-red-800 font-bold border-2 p-2 mb-2">
-        <%#= f.error_notification %>
-        <%#= f.error_notification(
-              message: f.object.errors.full_messages.to_sentence
-            ) %>
+        <ul>
+          <% f.object.errors.full_messages.each do |e| %>
+            <li class='error_message'><%= e %></li>
+          <% end %>
+        </ul>
       </div>
-    <%# end %>
+    <% end %>
 
     <div class='p-2 my-2'>
       <%= f.label :date, 'Date' %><br>

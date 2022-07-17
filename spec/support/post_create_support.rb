@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module PostCreateSupport
   def create_post(description)
     click_link 'New Post'
