@@ -44,9 +44,9 @@ RSpec.describe 'Posts', type: :system do
 
         # A host see conversations
         click_link 'See Conversations'
-        
-        expect(page).to have_content "No messages."
-        
+
+        expect(page).to have_content 'No messages.'
+
         # A host log out and a guest log in
         click_link 'Log out'
         sign_in_as guest
@@ -58,15 +58,15 @@ RSpec.describe 'Posts', type: :system do
         fill_in 'message[body]', with: msg
         click_button 'Send Message'
         expect(page).to have_content msg
-        
+
         # A guest log out and a host log in
         click_link 'Log out'
         sign_in_as host
         visit root_path
-        
+
         # A host see conversations
         click_link 'See Conversations'
-        
+
         expect(page).to have_content msg
       end
     end
@@ -90,7 +90,7 @@ RSpec.describe 'Posts', type: :system do
 
         # a guest send a message
         click_link 'Message'
-        
+
         expect(page).to have_content "Conversation with: #{host.name}"
 
         msg = 'test message from guest'
