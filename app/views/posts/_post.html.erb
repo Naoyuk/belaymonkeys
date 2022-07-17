@@ -1,4 +1,4 @@
-<div class="card shadow body m-3 p-3">
+<div class="card shadow body m-3 p-3" id="<%= dom_id(post) %>">
   <div class="card-body">
     <div class="py-2 border-top">
       <div class="my-auto">
@@ -27,7 +27,7 @@
 
     <div class="row py-2 border-top">
       <div class="my-auto">
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end message-link">
           <% if post.user_id == current_user.id %>
             <%= message_link_to(
               chats_path(post_id: post.id),
