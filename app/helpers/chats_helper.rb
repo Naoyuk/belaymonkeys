@@ -27,7 +27,7 @@ module ChatsHelper
   def message_link_to(path, text, classes)
     classes << ' px-2 py-1 rounded font-semibold'
 
-    link_to(path, class: classes) do
+    link_to(path, class: classes, data: {'turbo-frame': '_top'}) do
       text
     end
   end
