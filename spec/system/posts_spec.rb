@@ -6,6 +6,7 @@ RSpec.describe 'Posts', type: :system do
   before do
     driven_by(:rack_test)
   end
+  # let(:area) { FactoryBot.create(:area) }
 
   scenario 'user creates a new post' do
     user = FactoryBot.create(:user)

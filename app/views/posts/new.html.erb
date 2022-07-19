@@ -24,8 +24,9 @@
     </div>
 
     <div class='p-2 my-2'>
-      <%= f.label :area, 'Area' %><br>
-      <%= f.text_field :area, class: form_input_style %>
+      <%= f.label :area_id, 'Area' %><br>
+      <%= f.collection_select :area_id, Area.all, :id, :name,
+        options = { include_blank: true }, class: form_input_style %>
     </div>
 
     <div class='p-2 my-2'>

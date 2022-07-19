@@ -8,5 +8,6 @@ FactoryBot.define do
     kind_of_climbing { :bouldering }
     sequence(:description) { |n| "test test#{n}" }
     association :user
+    association :area
   end
 end

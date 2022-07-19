@@ -2,10 +2,11 @@
 
 module PostCreateSupport
   def create_post(description)
+    area = FactoryBot.create(:area)
     click_link 'New Post'
     fill_in 'post[date]', with: 1.day.before
     fill_in 'post[description]', with: description
-    fill_in 'post[area]', with: 'Grandwall'
+    find('#post_area_id').find(:xpath, 'option[2]').select_option
     click_button 'Create Post'
   end
 end
