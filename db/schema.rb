@@ -10,9 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_14_063127) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_17_180727) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "areas", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "chats", force: :cascade do |t|
     t.integer "host_user_id"
@@ -43,7 +49,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_14_063127) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "area"
+    t.bigint "area_id", null: false
+    t.index ["area_id"], name: "index_posts_on_area_id"
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
@@ -63,5 +70,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_14_063127) do
   add_foreign_key "chats", "posts"
   add_foreign_key "messages", "chats"
   add_foreign_key "messages", "users"
+  add_foreign_key "posts", "areas"
   add_foreign_key "posts", "users"
 end

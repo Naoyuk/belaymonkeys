@@ -29,7 +29,9 @@ RSpec.describe 'Posts', type: :request do
 
     describe 'POST /create' do
       it 'creates a post' do
+        area = FactoryBot.create(:area)
         post_attributes = FactoryBot.attributes_for(:post)
+        post_attributes[:area_id] = area.id.to_s
 
         expect do
           post posts_path, params: {

@@ -1,0 +1,21 @@
+
+<%= form_with(model: @area) do |f| %>
+  <% if f.object.errors.present? %>
+    <div class="text-red-500 border-red-800 font-bold border-2 p-2 mb-2">
+      <ul>
+        <% f.object.errors.full_messages.each do |e| %>
+          <li class='error_message'><%= e %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-inputs">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.submit %>
+  </div>
+<% end %>

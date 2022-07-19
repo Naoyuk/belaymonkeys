@@ -1,0 +1,109 @@
+# frozen_string_literal: true
+
+require 'rails_helper'
+
+RSpec.describe '/areas', type: :request do
+  let(:area) { FactoryBot.create(:area) }
+
+  describe 'GET /index' do
+    it 'renders a successful response' do
+      get areas_url
+      expect(response).to be_successful
+    end
+  end
+
+  describe 'GET /show' do
+    it 'renders a successful response' do
+      get area_url(area)
+      expect(response).to be_successful
+    end
+  end
+
+  describe 'GET /new' do
+    it 'renders a successful response' do
+      get new_area_url
+      expect(response).to be_successful
+    end
+  end
+
+  describe 'GET /edit' do
+    it 'renders a successful response' do
+      get edit_area_url(area)
+      expect(response).to be_successful
+    end
+  end
+
+  describe 'POST /create' do
+    context 'with valid parameters' do
+      let(:valid_attributes) { FactoryBot.attributes_for(:area) }
+
+      it 'creates a new Area' do
+        expect do
+          post areas_url, params: { area: valid_attributes }
+        end.to change(Area, :count).by(1)
+      end
+
+      it 'redirects to the created area' do
+        post areas_url, params: { area: valid_attributes }
+        expect(response).to redirect_to(area_url(Area.last))
+      end
+    end
+
+    context 'with invalid parameters' do
+      it 'does not create a new Area' do
+        expect do
+          post areas_url, params: { name: nil }
+        end.to change(Area, :count).by(0)
+      end
+
+      it "renders a successful response (i.e. to display the 'new' template)" do
+        post areas_url, params: { area: invalid_attributes }
+        expect(response).to be_successful
+      end
+    end
+  end
+
+  describe 'PATCH /update' do
+    let(:valid_attributes) { FactoryBot.attributes_for(:area) }
+    let(:new_attributes) { 'Yosemite' }
+
+    context 'with valid parameters' do
+      it 'updates the requested area' do
+        area = Area.create! valid_attributes
+        patch area_url(area), params: { area: new_attributes }
+        area.reload
+        expect(area.name).to eq 'Yosemite'
+      end
+
+      it 'redirects to the area' do
+        area = Area.create! valid_attributes
+        patch area_url(area), params: { area: new_attributes }
+        area.reload
+        expect(response).to redirect_to(area_url(area))
+      end
+    end
+
+    context 'with invalid parameters' do
+      it "renders a successful response (i.e. to display the 'edit' template)" do
+        area = Area.create! valid_attributes
+        patch area_url(area), params: { area: invalid_attributes }
+        expect(response).to be_successful
+      end
+    end
+  end
+
+  describe 'DELETE /destroy' do
+    it 'destroys the requested area' do
+      area = Area.create! valid_attributes
+      expect do
+        delete area_url(area)
+      end.to change(Area, :count).by(-1)
+    end
+
+    it 'redirects to the areas list' do
+      area = Area.create! valid_attributes
+      delete area_url(area)
+      expect(response).to redirect_to(areas_url)
+    end
+  end
+end

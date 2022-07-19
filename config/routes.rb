@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  resources :areas
   get 'static_pages/home'
   get 'static_pages/about'
   resources :messages

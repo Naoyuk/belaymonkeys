@@ -10,7 +10,6 @@
 
 # Seeds for users
 users = %w[Naoyuki Masami Takehiro Alanis]
-
 users.each do |user|
   User.create!(
     email: "#{user}@example.com",
@@ -20,8 +19,15 @@ users.each do |user|
   )
 end
 
+# Seeds for areas
+areas = ['Squamish', 'Yosemite Valley', 'Indian Creek', 'Kananaskis']
+areas.each do |area|
+  Area.create!(
+    name: area
+  )
+end
+
 # Seeds for posts
-areas = ['Smoke Bluffs', 'Grandwall', 'Murrin Park', 'Cheakamus Canyon']
 descriptions = [
   'I am looking for a partner for next Monday. Shall we go to some trad?',
   'Hi, I am visiting in Squamish for a month. Please rope up with me. I would like to sport.',
@@ -40,7 +46,7 @@ descriptions = [
     date: Date.new.strftime('%Y-%m-%d'),
     start_time: Time.new.strftime('%H:%M'),
     end_time: Time.new.strftime('%H:%M'),
-    area: areas[rand(4)],
+    area_id: Area.find(rand(1..3)).id,
     kind_of_climbing: 0,
     description: descriptions[n],
     user_id: User.find(rand(1..3)).id
