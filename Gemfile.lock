@@ -246,6 +246,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    simple_form (5.1.0)
+      actionpack (>= 5.2)
+      activemodel (>= 5.2)
     stimulus-rails (1.0.4)
       railties (>= 6.0.0)
     strscan (3.0.3)
@@ -296,6 +299,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   selenium-webdriver
+  simple_form
   stimulus-rails
   turbo-rails
   tzinfo-data
