@@ -1,30 +1,17 @@
 # frozen_string_literal: true
 
-class Users::ConfirmationsController < Devise::ConfirmationsController
-  # GET /users/confirmation/new
-  def new
-    super
-  end
+module Users
+  class ConfirmationsController < Devise::ConfirmationsController
+    # GET /users/confirmation/new
 
-  # POST /users/confirmation
-  def create
-    super
-  end
+    # POST /users/confirmation
 
-  # GET /users/confirmation?confirmation_token=abcdef
-  def show
-    super
-  end
+    # GET /users/confirmation?confirmation_token=abcdef
 
-  # protected
+    # protected
 
-  # The path used after resending confirmation instructions.
-  def after_resending_confirmation_instructions_path_for(resource_name)
-    super(resource_name)
-  end
+    # The path used after resending confirmation instructions.
 
-  # The path used after confirmation.
-  def after_confirmation_path_for(resource_name, resource)
-    super(resource_name, resource)
+    # The path used after confirmation.
   end
 end
