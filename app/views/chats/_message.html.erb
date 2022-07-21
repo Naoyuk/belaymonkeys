@@ -1,12 +1,14 @@
-<div class="py-2 mb-2">
-  <ul>
-    <% @messages.each do |message| %>
-      <li class="<%= message_class(message) %>" <%= dom_id(message) %>>
-        <p><%= simple_format(h(message.body)) %></p>
-      </li>
-    <% end %>
-  </ul>
-</div>
+<%= turbo_frame_tag "message-list" do %>
+  <div class="py-2 mb-2">
+    <ul>
+      <% @messages.each do |message| %>
+        <li class="<%= message_class(message) %>" <%= dom_id(message) %>>
+          <p><%= simple_format(h(message.body)) %></p>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
 
 <div>
   <%= form_with(model: @message) do |f| %>
