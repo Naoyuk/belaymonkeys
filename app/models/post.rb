@@ -15,4 +15,8 @@ class Post < ApplicationRecord
 
   # Enum
   enum kind_of_climbing: %i[trad sport bouldering multipitches]
+
+  def self.looks(area_id)
+    @posts = Post.where('area_id = ?', area_id)
+  end
 end
