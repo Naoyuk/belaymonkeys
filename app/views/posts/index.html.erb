@@ -1,3 +1,13 @@
+<div class="mt-3 p-3">
+  <%= form_with(url: search_path, local: true, method: :get, class: 'shadow-md rounded p-4') do |f| %>
+    <%= f.label :area_id, "Area", class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+    <%= f.select :area_id, 
+      options_for_select(Area.all.to_a.map{|area| [area[:name], area[:id]]}),
+      class: 'block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500'
+    %>
+    <%= f.submit 'Search', class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+  <% end %>
+</div>
 <%= turbo_frame_tag 'posts-list' do %>
   <div class="mt-3">
     <%= render @posts %>
