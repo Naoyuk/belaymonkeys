@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :chats
   resources :posts
+  get 'search' => 'searches#search'
 
   root 'posts#index'
 end

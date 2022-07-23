@@ -4,6 +4,8 @@ class PostsController < ApplicationController
   before_action :authenticate_user!
 
   def index
+    # @search = Post.ransack(params[:q])
+    # @posts = @search.result
     @posts = Post.all
   end
 
