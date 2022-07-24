@@ -25,6 +25,16 @@
       <%= safe_join(post.description.split("\n"), tag(:br)) %>
     </div>
 
+    <div class="my-auto">
+      <% if post.pictures.any? %>
+        <div class='grid grid-cols-4 gap-4'>
+        <% post.pictures.each do |picture| %>
+          <%= image_tag(picture.url, class: 'object-fit') %>
+        <% end %>
+        </div>
+      <% end %>
+    </div>
+
     <div class="row py-2 border-top">
       <div class="my-auto">
         <div class="d-flex justify-content-end message-link">

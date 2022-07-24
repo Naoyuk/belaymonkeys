@@ -16,6 +16,17 @@ class Post < ApplicationRecord
   # Enum
   enum kind_of_climbing: %i[trad sport bouldering multipitches]
 
+  # Mount uploader to Post model
+  mount_uploaders :pictures, PictureUploader
+
+  # instance methods
+  # def pictures_tile(post)
+  #   post.pictures.each do |picture|
+  #     image_tag
+  #   end
+  # end
+
+  # class methods
   def self.looks(area_id)
     @posts = Post.where('area_id = ?', area_id)
   end

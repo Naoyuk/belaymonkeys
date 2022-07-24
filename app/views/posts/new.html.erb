@@ -45,6 +45,11 @@
       </div>
     </div>
 
+    <div class='p-2 my-2'>
+      <%= f.label :pictures, 'Pictures' %>
+      <%= f.file_field :pictures, multiple: true %>
+    </div>
+
     <%= f.button :submit, class: 'bg-indigo-700 text-white py-2 px-4 rounded' %>
 
   <% end %>
