@@ -6,10 +6,14 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.2'
 
 gem 'bootsnap', require: false
+gem 'carrierwave'
 gem 'cssbundling-rails'
 gem 'devise'
+gem 'figaro'
+gem 'fog-aws'
 gem 'jbuilder'
 gem 'jsbundling-rails'
+gem 'mini_magick'
 gem 'pg', '~> 1.1'
 gem 'propshaft'
 gem 'puma', '~> 5.0'
