@@ -9,7 +9,6 @@ gem 'bootsnap', require: false
 gem 'carrierwave'
 gem 'cssbundling-rails'
 gem 'devise'
-gem 'figaro'
 gem 'fog-aws'
 gem 'jbuilder'
 gem 'jsbundling-rails'
@@ -24,10 +23,6 @@ gem 'simple_form'
 gem 'stimulus-rails'
 gem 'turbo-rails'
 gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
-gem 'carrierwave'
-gem 'mini_magick'
-gem 'figaro'
-gem 'fog-aws'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri mingw x64_mingw]
