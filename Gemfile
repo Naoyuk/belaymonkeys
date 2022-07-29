@@ -9,6 +9,7 @@ gem 'bootsnap', require: false
 gem 'carrierwave'
 gem 'cssbundling-rails'
 gem 'devise'
+gem 'figaro'
 gem 'fog-aws'
 gem 'jbuilder'
 gem 'jsbundling-rails'
