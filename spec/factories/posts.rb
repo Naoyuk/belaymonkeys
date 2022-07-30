@@ -7,6 +7,7 @@ FactoryBot.define do
     end_time { Time.new.strftime('%H:%M') }
     kind_of_climbing { :bouldering }
     sequence(:description) { |n| "test test#{n}" }
+    pictures { [Rack::Test::UploadedFile.new(Rails.root.join('spec/fixtures/test1.jpg'), 'spec/fixtures/test1.jpg')] }
     association :user
     association :area
   end

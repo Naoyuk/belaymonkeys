@@ -4,6 +4,8 @@ require 'rails_helper'
 
 RSpec.describe Post, type: :model do
   let(:post) { FactoryBot.build(:post) }
+  let(:picture_path) { Rails.root.join('spec/fixtures/test1.jpg') }
+  let(:picture) { Rack::Test::UploadedFile.new(picture_path) }
 
   describe 'Validations' do
     it 'has valid factory' do
@@ -20,6 +22,11 @@ RSpec.describe Post, type: :model do
       post.description = nil
       post.valid?
       expect(post.errors[:description]).to include("can't be blank")
+    end
+
+    it 'can have multiple pictures' do
+      post.pictures = [picture, picture]
+      expect(post).to be_valid
     end
   end
 end
