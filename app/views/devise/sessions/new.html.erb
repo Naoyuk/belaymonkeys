@@ -1,26 +1,28 @@
-<h2>Log in</h2>
+<h2 class='text-xl font-bold text-green-500'>Log in</h2>
 
 <%= form_with(model: @user, url: user_session_path, class: 'registration-main') do |f| %>
-  <div class="form-inputs">
-    <div class="field">
-      <%= f.label :email %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :password %>
-      <%= f.password_field :password %>
-    </div>
-
-    <% if devise_mapping.rememberable? %>
-      <div class="field">
-        <%= f.check_box :remember_me, class: 'form-check-input' %>
+  <div class="grid grid-cols-1 place-content-center">
+      <div class="p-2 my-2">
+        <%= f.label :email, class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class: form_input_style %>
       </div>
-    <% end %>
-  </div>
 
-  <div class="form-actions">
-    <%= f.submit "Log in" %>
+      <div class="p-2 my-2">
+        <%= f.label :password, class: 'block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2' %>
+        <%= f.password_field :password, class: form_input_style %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="p-2 my-2">
+          <%= tag.span 'Remember me', class: 'tracking-wide text-gray-700 mb-2' %>
+          <%= f.check_box :remember_me, class: 'form-check-input' %>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="form-actions">
+      <%= f.submit "Log in", class: submit_btn_style %>
+    </div>
   </div>
 <% end %>
 

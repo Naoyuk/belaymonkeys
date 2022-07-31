@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 Rails.application.routes.draw do
+  get 'users/show'
   devise_for :users, controllers: {
     confirmations: 'users/confirmations',
     registrations: 'users/registrations',
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
   resources :messages
   resources :chats
   resources :posts
+  resources :users, only: [:show]
   get 'search' => 'searches#search'
 
   root 'posts#index'
