@@ -25,6 +25,6 @@ class User < ApplicationRecord
 
   # 引数で渡したユーザーに対してパートナーシップの招待状を送る
   def send_invitation(user)
-    partnerships.create(partner_id: user.id)
+    partnerships.create(partner_id: user)
   end
 end

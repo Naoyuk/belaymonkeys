@@ -1,5 +1,6 @@
 class Partnership < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, class_name: 'User', foreign_key: 'user_id', optional: true
+  belongs_to :partner, class_name: 'User', foreign_key: 'partner_id', optional: true
 
   # 2人のユーザー間にパートナー成立の是非を問わず、招待したレコードがあるかどうかのブール値を返す
   def self.reacted?(id1, id2)

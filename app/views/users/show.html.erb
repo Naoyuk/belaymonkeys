@@ -9,7 +9,11 @@
       </div>
     <% else %>
       <div class="mt-4">
-        <%= link_to 'Partner request', '', class: primary_btn_style %>
+        <% if !Partnership.reacted?(current_user.id, @user.id) %>
+          <%= link_to 'Partner request', request_path(partner: @user), class: primary_btn_style %>
+        <% else %>
+          <p>You are reqesting a partnership to this user.</p>
+        <% end %>
       </div>
     <% end %>
   </div>
