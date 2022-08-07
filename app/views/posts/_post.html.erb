@@ -3,7 +3,7 @@
     <div class="py-2 border-top">
       <div class="my-auto">
         <b><%= post.date.to_fs(:stamp_list_old) %></b>
-        <b><%= link_to post.user.name, users_show_path(id: post.user.id), data: {"turbo-frame": "_top"}, class: link_style %></b>
+        <b><%= link_to post.user.name, user_path(post.user.id), data: {"turbo-frame": "_top"}, class: link_style %></b>
       </div>
 
       <div class="my-auto">

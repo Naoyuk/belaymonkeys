@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/request', to: 'partners#create'
   get 'partners/destroy'
 
-  get 'users/show'
+  # get 'users/show'
   get 'search' => 'searches#search'
 
   root 'posts#index'
