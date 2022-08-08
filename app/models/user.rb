@@ -18,6 +18,12 @@ class User < ApplicationRecord
     User.where(id: ids)
   end
 
+  # ユーザーのすべての招待状を配列で返す
+  def invitations
+    partners_i_got_invitation = Partnership.where(partner_id: id, confirmed: false).pluck(:user_id)
+    User.where(id: partners_i_got_invitation)
+  end
+
   # 引数で渡したユーザーとパートナーであるかのブール値を返す
   def partner_with?(user)
     Partnership.confirmed_record?(id, user.id)

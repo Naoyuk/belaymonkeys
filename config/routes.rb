@@ -17,9 +17,10 @@ Rails.application.routes.draw do
   get 'static_pages/home'
   get 'static_pages/about'
 
-  get '/partners', to: 'partners#index'
-  get '/request', to: 'partners#create'
-  get 'partners/destroy'
+  get '/partners', to: 'partnerships#index'
+  get '/request', to: 'partnerships#create'
+  put '/accept_request', to: 'partnerships#accept'
+  delete '/remove_partner', to: 'partnerships#destroy'
 
   # get 'users/show'
   get 'search' => 'searches#search'
