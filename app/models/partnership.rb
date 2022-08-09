@@ -19,10 +19,10 @@ class Partnership < ApplicationRecord
   # 引数で渡した2人のユーザー間で成立済みのパートナーシップレコードを検索する
   # パートナーシップの解消の時に使う
   def self.find_invitation(id1, id2)
-    if Partnership.where(user_id: id1, partner_id: id2, confirmed: true).empty?
-      Partnership.where(user_id: id2, partner_id: id1, confirmed: true)[0].id
+    if Partnership.where(user_id: id1, partner_id: id2).empty?
+      Partnership.where(user_id: id2, partner_id: id1)[0].id
     else
-      Partnership.where(user_id: id1, partner_id: id2, confirmed: true)[0].id
+      Partnership.where(user_id: id1, partner_id: id2)[0].id
     end
   end
 end

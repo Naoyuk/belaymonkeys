@@ -2,7 +2,8 @@ class PartnershipsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @partnerships = Partnership.where(user_id: current_user.id)
+    debugger
+    @partnerships = Partnership.find_by(user_id: current_user.id)
   end
 
   def create
@@ -15,14 +16,19 @@ class PartnershipsController < ApplicationController
     partnership = Partnership.where(user_id: params[:partner_id], partner_id: current_user.id)
     partnership[0].update_columns(confirmed: true)
     flash.now.notice = 'A request has been accepted.'
+
+    @user = User.find(current_user.id)
+    redirect_to user_path(@user)
+    # render template: 'users/show'
   end
 
   def destroy
-    partnership = Partnership.where(user_id: params[:partner_id], partner_id: current_user.id)
-    partnership[0].destroy
+    partnership = Partnership.find(Partnership.find_invitation(current_user.id, params[:partner_id].to_i))
+    partnership.destroy
     flash.now.notice = 'Deleted a request.'
 
-    # @user = User.find(current_user.id)
+    @user = User.find(current_user.id)
+    redirect_to user_path(@user)
     # render template: 'users/show'
   end
 end
