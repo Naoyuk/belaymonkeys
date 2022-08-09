@@ -2,8 +2,7 @@ class PartnershipsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    debugger
-    @partnerships = Partnership.find_by(user_id: current_user.id)
+    @partners = current_user.partners
   end
 
   def create

@@ -1,14 +1,9 @@
 <div>
-  <% @partnerships.each do |partnership| %>
+  <% @partners.each do |partner| %>
     <div>
-      <%= partnership.partner.name %>
-      <% if current_user.partner_with?(partnership.partner) %>
-        <%= link_to 'Message', '', class: primary_btn_style %>
-        <%= link_to 'Delete', '', class: danger_btn_style %>
-      <% else %>
-        <%= link_to 'Accept', '', class: primary_btn_style %>
-        <%= link_to 'Delete', '', class: danger_btn_style %>
-      <% end %>
+      <%= partner.name %>
+      <%= link_to 'Message', '', class: primary_btn_style %>
+      <%= link_to 'Delete', '', class: danger_btn_style %>
     </div>
   <% end %>
 </div>
