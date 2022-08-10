@@ -19,6 +19,12 @@ RSpec.describe 'Searches', type: :system do
 
     # A host creates some posts
     click_link 'New Post'
+    fill_in 'post[date]', with: 1.day.before
+    fill_in 'post[description]', with: 'post of Squamish yesterday'
+    find('#post_area_id').find(:xpath, 'option[2]').select_option
+    click_button 'Create Post'
+
+    click_link 'New Post'
     fill_in 'post[date]', with: 1.day.after
     fill_in 'post[description]', with: 'post of Squamish1'
     find('#post_area_id').find(:xpath, 'option[2]').select_option
@@ -40,6 +46,7 @@ RSpec.describe 'Searches', type: :system do
     find('#area_id').find(:xpath, 'option[1]').select_option
     click_button 'Search'
 
+    expect(page).not_to have_content 'post of Squamish yesterday'
     expect(page).to have_content 'post of Squamish1'
     expect(page).to have_content 'post of Squamish2'
 

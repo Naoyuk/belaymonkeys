@@ -22,6 +22,26 @@ RSpec.describe 'Posts', type: :system do
     end.to change(user.posts, :count).by(1)
   end
 
+  scenario 'posts before today does not appear on the list' do
+    user = FactoryBot.create(:user)
+
+    # Prepair Areas
+    FactoryBot.create(:area, name: 'Squamish')
+    FactoryBot.create(:area, name: 'Yosemite Valley')
+
+    sign_in_as user
+
+    click_link 'New Post'
+    fill_in 'post[date]', with: 1.day.before
+    description = 'a post of yesterday'
+    fill_in 'post[description]', with: description
+    find('#post_area_id').find(:xpath, 'option[2]').select_option
+    click_button 'Create Post'
+
+    expect(page).to have_content 'New post was successfully created.'
+    expect(page).not_to have_content description
+  end
+
   describe 'posts have a button that shows chat' do
     let(:host) { FactoryBot.create(:host) }
     let(:guest) { FactoryBot.create(:guest) }
