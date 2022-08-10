@@ -28,6 +28,6 @@ class Post < ApplicationRecord
 
   # class methods
   def self.looks(area_id)
-    @posts = Post.where('area_id = ?', area_id)
+    @posts = Post.where('area_id = ? and date >= ?', area_id, Date.today)
   end
 end

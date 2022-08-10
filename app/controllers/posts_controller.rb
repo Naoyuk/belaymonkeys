@@ -6,7 +6,7 @@ class PostsController < ApplicationController
   def index
     # @search = Post.ransack(params[:q])
     # @posts = @search.result
-    @posts = Post.all
+    @posts = Post.where('date >= ?', Date.today)
   end
 
   def new
