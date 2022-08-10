@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Partnership, type: :model do
@@ -30,7 +32,7 @@ RSpec.describe Partnership, type: :model do
 
     context "user's request has been accepted" do
       it 'returns true' do
-        Partnership.create(user_id: user.id, partner_id:partner.id, confirmed: true)
+        Partnership.create(user_id: user.id, partner_id: partner.id, confirmed: true)
 
         expect(Partnership.confirmed_record?(user.id, partner.id)).to eq true
       end
@@ -38,7 +40,7 @@ RSpec.describe Partnership, type: :model do
 
     context "user's request has not been accepted" do
       it 'returns false' do
-        Partnership.create(user_id: user.id, partner_id:partner.id)
+        Partnership.create(user_id: user.id, partner_id: partner.id)
 
         expect(Partnership.confirmed_record?(user.id, partner.id)).to eq false
       end

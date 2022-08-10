@@ -19,19 +19,19 @@ RSpec.describe 'Searches', type: :system do
 
     # A host creates some posts
     click_link 'New Post'
-    fill_in 'post[date]', with: 1.day.before
+    fill_in 'post[date]', with: 1.day.after
     fill_in 'post[description]', with: 'post of Squamish1'
     find('#post_area_id').find(:xpath, 'option[2]').select_option
     click_button 'Create Post'
 
     click_link 'New Post'
-    fill_in 'post[date]', with: 2.day.before
+    fill_in 'post[date]', with: 2.day.after
     fill_in 'post[description]', with: 'post of Yosemite Valley'
     find('#post_area_id').find(:xpath, 'option[3]').select_option
     click_button 'Create Post'
 
     click_link 'New Post'
-    fill_in 'post[date]', with: 3.day.before
+    fill_in 'post[date]', with: 3.day.after
     fill_in 'post[description]', with: 'post of Squamish2'
     find('#post_area_id').find(:xpath, 'option[2]').select_option
     click_button 'Create Post'

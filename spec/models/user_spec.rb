@@ -25,16 +25,16 @@ RSpec.describe User, type: :model do
   describe '#partner_with? method' do
     it 'returns true if user has a partnership with other user' do
       Partnership.create(user_id: user.id, partner_id: partner1.id, confirmed: true)
-      
+
       expect(user.partner_with?(partner1)).to eq true
     end
   end
 
   describe '#send_invitation method' do
     it 'creates a partnership record' do
-      expect {
+      expect do
         user.send_invitation(partner1)
-      }.to change(Partnership, :count).by(1)
+      end.to change(Partnership, :count).by(1)
     end
   end
 end
