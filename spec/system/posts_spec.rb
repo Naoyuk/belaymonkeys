@@ -32,7 +32,7 @@ RSpec.describe 'Posts', type: :system do
     sign_in_as user
 
     click_link 'New Post'
-    fill_in 'post[date]', with: 1.day.before
+    fill_in 'post[date]', with: 2.day.before
     description = 'a post of yesterday'
     fill_in 'post[description]', with: description
     find('#post_area_id').find(:xpath, 'option[2]').select_option

@@ -1,9 +1,9 @@
-<div>
-  <% @partners.each do |partner| %>
-    <div>
-      <%= partner.name %>
-      <%= link_to 'Message', '', class: primary_btn_style %>
-      <%= link_to 'Delete', '', class: danger_btn_style %>
-    </div>
-  <% end %>
+<div class='grid grid-cols-3'>
+  <div class='col-span-1 p-2'>
+    <%= render 'partnerships/sidebar' %>
+  </div>
+
+  <div class='partner-chats col-span-2 py-2 mb-2'>
+    <%= render 'partnerships/messages', messages: @messages %>
+  </div>
 </div>

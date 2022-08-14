@@ -25,5 +25,8 @@ Rails.application.routes.draw do
   # get 'users/show'
   get 'search' => 'searches#search'
 
+  # get 'messages/dms'
+  get '/direct_messages', to: 'messages#direct_messages'
+
   root 'posts#index'
 end

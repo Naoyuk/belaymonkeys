@@ -5,6 +5,6 @@ class SearchesController < ApplicationController
 
   def search
     @posts = Post.looks(params[:area_id])
-    render template: 'posts/index'
+    render 'posts/index'
   end
 end

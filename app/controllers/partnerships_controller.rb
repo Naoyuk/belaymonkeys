@@ -5,6 +5,14 @@ class PartnershipsController < ApplicationController
 
   def index
     @partners = current_user.partners
+    messages_or_new_message = Partnership.find_or_create_messages(current_user.id, params[:partner_id])
+    return if messages_or_new_message.nil?
+
+    if !messages_or_new_message[:messages].nil?
+      @messages = messages_or_new_message[:messages]
+    elsif !messages_or_new_message[:message].nil?
+      @message = messages_or_new_message[:message]
+    end
   end
 
   def create
