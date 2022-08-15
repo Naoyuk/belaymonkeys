@@ -28,16 +28,18 @@ class Partnership < ApplicationRecord
     end
   end
 
-  # パートナーとのDMを検索し、あれば@messagesを返し、なければ作成する
+  # パートナーとのDM用チャットを検索し、あれば@messagesを返し、なければ作成する
   def self.find_or_create_messages(user_id, partner_id)
     return unless !user_id.nil? && !partner_id.nil?
 
     dm_chat = Chat.dm_chat(partner_id:, id: user_id)[0]
-    if !dm_chat.nil?
-      result = { messages: dm_chat.messages }
-    else
+    result = {}
+    if dm_chat.nil?
       chat = Chat.create(host_user_id: user_id, guest_user_id: partner_id)
-      result = { message: chat.messages.build(user_id:) }
+      result[:message] = chat.messages.build(user_id:)
+    else
+      result[:messages] = dm_chat.messages
+      result[:message] = dm_chat.messages.build(user_id:)
     end
     result
   end

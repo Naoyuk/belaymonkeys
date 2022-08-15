@@ -28,5 +28,8 @@ Rails.application.routes.draw do
   # get 'messages/dms'
   get '/direct_messages', to: 'messages#direct_messages'
 
+  # post 'messages/create_dm'
+  post '/create_dm', to: 'messages#create_dm'
+
   root 'posts#index'
 end

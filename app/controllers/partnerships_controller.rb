@@ -8,9 +8,10 @@ class PartnershipsController < ApplicationController
     messages_or_new_message = Partnership.find_or_create_messages(current_user.id, params[:partner_id])
     return if messages_or_new_message.nil?
 
-    if !messages_or_new_message[:messages].nil?
+    if !messages_or_new_message[:messages].nil? && !messages_or_new_message[:messages].empty?
       @messages = messages_or_new_message[:messages]
-    elsif !messages_or_new_message[:message].nil?
+      @message = Message.new(chat_id: messages_or_new_message[:messages][0].chat_id, user_id: current_user.id) 
+    else # !messages_or_new_message[:message].nil?
       @message = messages_or_new_message[:message]
     end
   end

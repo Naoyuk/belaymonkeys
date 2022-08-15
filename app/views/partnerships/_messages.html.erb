@@ -10,7 +10,7 @@
   <% end %>
 <% end %>
 <div class='mt-10'>
-  <%= form_with(model: @message) do |f| %>
+  <%= form_with model: @message, url: create_dm_path do |f| %>
     <%= f.hidden_field :chat_id %>
     <%= f.hidden_field :user_id %>
     <div>

@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   def index
     # @messages = fetch_messages(params[:partner])
     @partners = current_user.partners
-    @messages = Message.all
+    # @messages = Message.all
     # render partial: 'partnerships/chat'
   end
 
@@ -24,6 +24,17 @@ class MessagesController < ApplicationController
     chat_partner_is_host = Chat.where(host_user_id: partner, guest_user_id: current_user.id).pluck(:id)
     ids = chat_i_am_host + chat_partner_is_host
     @chats = Chat.where(id: ids)
+  end
+
+  def create_dm
+    @partners = current_user.partners
+    @message = Message.new(message_params)
+    if @message.save
+      @messages = Chat.find(params[:message][:chat_id]).messages
+      render partial: 'partnerships/messages', locals: { messages: @messages }
+    else
+      render template: 'partnerships/index'
+    end
   end
 
   private
