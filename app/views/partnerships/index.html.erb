@@ -1,9 +1,27 @@
-<div class='grid grid-cols-3'>
-  <div class='col-span-1 p-2'>
+<div class='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+  <div class='col-span-1'>
     <%= render 'partnerships/sidebar' %>
   </div>
 
-  <div class='partner-chats col-span-2 py-2 mb-2'>
-    <%= render 'partnerships/messages', messages: @messages %>
+  <div class='partner-chats col-span-2 mb-2'>
+    <% if !@messages.nil? %>
+      <%= render 'partnerships/message', messages: @messages %>
+    <% end %>
+
+    <div class='mt-10'>
+      <%= form_with model: @message, url: create_dm_path, html: { data: { turbo_frame: 'messages-list' } } do |f| %>
+        <%= f.hidden_field :chat_id %>
+        <%= f.hidden_field :user_id %>
+        <div class='p-4'>
+          <%= f.text_area :body,
+            class: 'p-2 border-2 border-solid border-blue-500 rounded-md block w-full'
+          %>
+        </div>
+        <div>
+          <%= f.submit 'Send Message',
+              class: 'px-2 py-1 bg-blue-400 text-white font-semibold rounded hover:bg-blue-500' %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>

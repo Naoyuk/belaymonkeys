@@ -10,9 +10,9 @@ class PartnershipsController < ApplicationController
 
     if !messages_or_new_message[:messages].nil? && !messages_or_new_message[:messages].empty?
       @messages = messages_or_new_message[:messages]
-      @message = Message.new(chat_id: messages_or_new_message[:messages][0].chat_id, user_id: current_user.id) 
+      # @message = Message.new(chat_id: messages_or_new_message[:messages][0].chat_id, user_id: current_user.id) 
     else # !messages_or_new_message[:message].nil?
-      @message = messages_or_new_message[:message]
+      # @message = messages_or_new_message[:message]
     end
   end
 

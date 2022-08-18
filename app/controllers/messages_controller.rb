@@ -27,11 +27,11 @@ class MessagesController < ApplicationController
   end
 
   def create_dm
-    @partners = current_user.partners
+    # @partners = current_user.partners
     @message = Message.new(message_params)
     if @message.save
       @messages = Chat.find(params[:message][:chat_id]).messages
-      render partial: 'partnerships/messages', locals: { messages: @messages }
+      render template: 'partnerships/message', locals: { messages: @messages }
     else
       render template: 'partnerships/index'
     end
