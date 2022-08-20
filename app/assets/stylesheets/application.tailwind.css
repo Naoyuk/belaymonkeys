@@ -1,3 +1,57 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.partnership-list:hover {
+    background: #f0f0f0;
+    border-radius: 5px;
+}
+
+.my-message {
+    display: inline-block;
+    position: relative; 
+    padding: 8px;
+    border-radius: 12px;
+    background: #60A5FA;
+    font-size: 15px;
+}
+
+/*
+.my-message:after {
+    content: "";
+    position: absolute;
+    top: 3px; 
+    right: -19px;
+    border: 8px solid transparent;
+    border-left: 18px solid #60A5FA;
+    -webkit-transform: rotate(-35deg);
+    transform: rotate(-35deg);
+}
+*/
+
+.partner-message {
+    display: inline-block;
+    position: relative; 
+    margin-left: 80px;
+    padding: 10px;
+    border-radius: 12px;
+    background: #edf1ee;
+}
+
+/*
+.partner-message:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    top: 3px; 
+    left: -19px;
+    border: 8px solid transparent;
+    border-right: 18px solid #edf1ee;
+    -webkit-transform: rotate(35deg);
+    transform: rotate(35deg);
+}
+*/
+
+#new_message {
+    display: none;
+}

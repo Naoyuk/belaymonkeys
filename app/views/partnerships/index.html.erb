@@ -1,9 +1,17 @@
-<div>
-  <% @partners.each do |partner| %>
-    <div>
-      <%= partner.name %>
-      <%= link_to 'Message', '', class: primary_btn_style %>
-      <%= link_to 'Delete', '', class: danger_btn_style %>
+<div class='grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3'>
+  <div class='col-span-1'>
+    <%= render 'partnerships/sidebar' %>
+  </div>
+
+  <div class='partner-chats col-span-2 mb-2'>
+    <% if !@messages.nil? %>
+      <div id='messages'>
+        <%= render @messages %>
+      </div>
+    <% end %>
+
+    <div class='mt-10'>
+      <%= render template: 'messages/new', locals: { message: @message } %>
     </div>
-  <% end %>
+  </div>
 </div>

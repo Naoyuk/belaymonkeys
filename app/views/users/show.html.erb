@@ -1,84 +1,12 @@
-<div class="grid grid-cols-3 gap-4">
+<div class="grid sm:grid-cols-1 lg:grid-cols-3 gap-4">
   <div class="col-span-1">
-    <div class='p-4 border rounded border-gray-400'>
-      <p>Name: <%= @user.name %></p>
-      <p>Email: <%= @user.email %></p>
-      <% if @user.id == current_user.id %>
-        <div class="mt-4">
-          <%= link_to 'Edit profile', edit_user_registration_path, class: warning_btn_style %>
-        </div>
-      <% end %>
-    </div>
-
-    <% if @user.id == current_user.id %>
-      <% if !@user.invitations.empty? %>
-        <div class='my-10'>
-          <h2 class='ml-4 mb-4 border-b-2'><%= pluralize(@user.invitations.count, 'Partner Request') %></h2>
-          <div>
-            <% @user.invitations.each do |invitation| %>
-              <div class='my-4 flex flex-row-reverse'>
-                <div class='px-4 py-2 m-2'>
-                  <span class='pl-2 pr-4'><%= invitation.name %></span>
-                </div>
-                <div class='px-4 py-2 m-2'>
-                  <%= link_to 'Accept',
-                      accept_request_path(partner_id: invitation.id),
-                      data: { "turbo-method": :put, "turbo-frame": "_top" },
-                      class: primary_btn_style %>
-                </div>
-                <div class='px-4 py-2 m-2'>
-                  <%= link_to 'Delete',
-                      remove_partner_path(partner_id: invitation.id),
-                      data: { "turbo-method": :delete },
-                      class: danger_btn_style %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-
-      <% if !@user.partners.empty? %>
-        <div class='my-10'>
-          <h2 class='ml-4 mb-4 border-b-2'>Your partners</h2>
-          <div>
-            <% @user.partners.each do |partner| %>
-              <div class='my-4 flex flex-row-reverse'>
-                <div class='px-4 py-2 m-2'>
-                  <span><%= partner.name %></span>
-                </div>
-                <div class='px-4 py-2 m-2'>
-                  <%= link_to 'Message',
-                      '',
-                      class: primary_btn_style %>
-                </div>
-                <div class='px-4 py-2 m-2'>
-                  <%= link_to 'Remove',
-                      remove_partner_path(partner_id: partner.id),
-                      data: { "turbo-method": :delete },
-                      class: danger_btn_style %>
-                </div>
-              </div>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
-
-    <% else %>
-      <div class="mt-4">
-        <% if !Partnership.reacted?(current_user.id, @user.id) %>
-          <%= link_to 'Partner request', request_path(partner: @user), class: primary_btn_style %>
-        <% else %>
-          <p>You are reqesting a partnership to this user.</p>
-        <% end %>
-      </div>
-    <% end %>
+    <%= render 'users/sidebar', user: @user %>
   </div>
 
   <div class="p-2 col-span-2">
     <h2 class='ml-4 mb-4 border-b-2'><%= @user.name %>'s Posts</h2>
     <% @user.posts.each do |post| %>
-      <%= render partial: post %>
+      <%= render partial: post, user: @user %>
     <% end %>
   </div>
 </div>

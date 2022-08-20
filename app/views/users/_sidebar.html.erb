@@ -1,0 +1,22 @@
+<div class='sidebar p-2'>
+  <%= render 'users/personal_data' %>
+
+  <% if user.id == current_user.id %>
+    <% if !user.invitations.empty? %>
+      <%= render 'users/partner_requests', user: user %>
+    <% end %>
+
+    <% if !user.partners.empty? %>
+      <%= render 'users/partners', user: user %>
+    <% end %>
+
+  <% else %>
+    <div class="mt-4">
+      <% if !Partnership.reacted?(current_user.id, user.id) %>
+        <%= link_to 'Partner request', request_path(partner: user), class: primary_btn_style %>
+      <% else %>
+        <p>You are reqesting a partnership to this user.</p>
+      <% end %>
+    </div>
+  <% end %>
+</div>

@@ -1,0 +1,7 @@
+  <%= turbo_frame_tag message do %>
+    <div class='grid grid-cols-4 gap-y-2'>
+      <div class="<%= message_class(message) %>" id="<%= dom_id(message) %>">
+        <p><%= simple_format(h(message.body)) %></p>
+      </div>
+    </div>
+  <% end %>

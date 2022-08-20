@@ -1,3 +1,9 @@
 <p>Conversation with: <%= @chat.host.name %></p>
 <p><%= @chat.post.description %></p>
-<%= render 'message' %>
+<div id='messages'>
+  <%= render @messages %>
+</div>
+
+<div class='mt-10'>
+  <%= render template: 'messages/new', locals: { message: @message } %>
+</div>

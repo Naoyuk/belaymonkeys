@@ -1,0 +1,5 @@
+<%= turbo_stream.append "messages", @message %>
+
+<%= turbo_stream.update Message.new, '' %>
+
+<%= turbo_stream_flash %>
