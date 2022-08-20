@@ -41,4 +41,8 @@ module ApplicationHelper
        dark-mode:text-gray-200 md:mt-0 hover:text-gray-900 focus:text-gray-900 hover:bg-gray-200 focus:bg-gray-200
        focus:outline-none focus:shadow-outline]
   end
+
+  def turbo_stream_flash
+    turbo_stream.update 'flash', partial: 'flash'
+  end
 end

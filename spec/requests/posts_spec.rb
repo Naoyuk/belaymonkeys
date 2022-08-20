@@ -28,16 +28,27 @@ RSpec.describe 'Posts', type: :request do
     end
 
     describe 'POST /create' do
-      it 'creates a post' do
-        area = FactoryBot.create(:area)
-        post_attributes = FactoryBot.attributes_for(:post)
-        post_attributes[:area_id] = area.id.to_s
+      let(:area) { FactoryBot.create(:area) }
 
-        expect do
-          post posts_path, params: {
-            post: post_attributes
-          }
-        end.to change(@user.posts, :count).by(1)
+      context 'when all the parameters are valid' do
+        it "creates the user's post" do
+          valid_attributes = FactoryBot.attributes_for(:post)
+          valid_attributes[:area_id] = area.id.to_s
+
+          expect do
+            post posts_path, params: {
+              post: valid_attributes
+            }
+          end.to change(@user.posts, :count).by(1)
+        end
+
+        it 'redirect to posts list' do
+          valid_attributes = FactoryBot.attributes_for(:post)
+          valid_attributes[:area_id] = area.id.to_s
+
+          post posts_path, params: { post: valid_attributes }
+          expect(response).to redirect_to(posts_url)
+        end
       end
     end
   end

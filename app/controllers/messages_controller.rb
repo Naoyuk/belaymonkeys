@@ -12,8 +12,14 @@ class MessagesController < ApplicationController
 
   def create
     @message = Message.new(message_params)
+
     if @message.save
-      redirect_to chat_path(@message.chat)
+      unless params[:message][:chat_id].nil?
+        chat = Chat.find(params[:message][:chat_id])
+        @messages = chat.messages
+      end
+
+      flash.now.notice = 'Successfully sent a message.'
     else
       render chat_path(@message.chat)
     end

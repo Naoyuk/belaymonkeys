@@ -38,8 +38,7 @@ class Partnership < ApplicationRecord
       chat = Chat.create(host_user_id: user_id, guest_user_id: partner_id)
       result[:message] = chat.messages.build(user_id:)
     else
-      result[:messages] = dm_chat.messages
-      result[:message] = dm_chat.messages.build(user_id:)
+      result = { messages: dm_chat.messages, message: dm_chat.messages.build(user_id:) }
     end
     result
   end

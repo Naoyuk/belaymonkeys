@@ -10,13 +10,13 @@
 .my-message {
     display: inline-block;
     position: relative; 
-    margin: 0 10px 0 0;
     padding: 8px;
     border-radius: 12px;
     background: #60A5FA;
     font-size: 15px;
 }
 
+/*
 .my-message:after {
     content: "";
     position: absolute;
@@ -27,16 +27,18 @@
     -webkit-transform: rotate(-35deg);
     transform: rotate(-35deg);
 }
+*/
 
 .partner-message {
     display: inline-block;
     position: relative; 
-    margin: 0 0 0 10px;
+    margin-left: 80px;
     padding: 10px;
     border-radius: 12px;
     background: #edf1ee;
 }
 
+/*
 .partner-message:after {
     content: "";
     display: inline-block;
@@ -47,4 +49,9 @@
     border-right: 18px solid #edf1ee;
     -webkit-transform: rotate(35deg);
     transform: rotate(35deg);
+}
+*/
+
+#new_message {
+    display: none;
 }

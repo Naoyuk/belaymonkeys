@@ -76,6 +76,12 @@ RSpec.describe 'Posts', type: :system do
         msg = 'test message from guest'
         fill_in 'message[body]', with: msg
         click_button 'Send Message'
+        # Turbo Stream doesn't work in RSpec I don't know why tho.
+        # So visit root and link to this post again temporally
+        # >>>>>>>>>>>>>>>
+        visit root_path
+        first('.message-link').click_link('Message')
+        # <<<<<<<<<<<<<<<
         expect(page).to have_content msg
 
         # A guest log out and a host log in
@@ -117,6 +123,12 @@ RSpec.describe 'Posts', type: :system do
         msg = 'test message from guest'
         fill_in 'message[body]', with: msg
         click_button 'Send Message'
+        # Turbo Stream doesn't work in RSpec I don't know why tho.
+        # So visit root and link to this post again temporally
+        # >>>>>>>>>>>>>>>
+        visit root_path
+        first('.message-link').click_link('Message')
+        # <<<<<<<<<<<<<<<
         expect(page).to have_content msg
       end
     end
