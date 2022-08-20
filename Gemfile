@@ -41,4 +41,5 @@ group :test do
   gem 'capybara-screenshot'
   gem 'factory_bot_rails'
   gem 'selenium-webdriver'
+  gem 'simplecov'
 end
