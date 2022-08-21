@@ -10,6 +10,9 @@ class User < ApplicationRecord
   has_many :posts, dependent: :nullify
   has_many :partnerships
 
+  # Image Uploader
+  mount_uploader :avatar, PictureUploader
+
   # ユーザーのすべてのパートナーを配列で返す
   def partners
     partners_i_sent_invitation = Partnership.where(user_id: id, confirmed: true).pluck(:partner_id)

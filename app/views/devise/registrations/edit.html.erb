@@ -32,6 +32,11 @@
       <%= f.label :current_password, class: form_label_style %>
       <%= f.text_field :password_confirmation, hint: "we need you current password to confirm your changes", arequired: true, autocomplete: "current-password", class: form_input_style %>
     </div>
+
+    <div class="p-2 my-2">
+      <%= f.label :avatar, class: form_label_style %>
+      <%= f.file_field :avatar %>
+    </div>
   </div>
 
   <div class="form-actions">

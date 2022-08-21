@@ -24,6 +24,11 @@
       <%= f.text_field :password_confirmation, arequired: true, utocomplete: "new-password", class: form_input_style %>
     </div>
 
+    <div class="p-2 my-2">
+      <%= f.label :avatar, class: form_label_style %>
+      <%= f.file_field :avatar %>
+    </div>
+
     <div class="form-actions">
       <%= f.button :submit, "Sign up", class: submit_btn_style %>
     </div>
