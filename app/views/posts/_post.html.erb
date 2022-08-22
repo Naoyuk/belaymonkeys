@@ -4,6 +4,11 @@
       <div class="my-auto">
         <b><%= post.date.to_fs(:stamp_list_old) %></b>
         <b><%= link_to post.user.name, user_path(post.user.id), data: {"turbo-frame": "_top"}, class: link_style %></b>
+        <% if post.user.avatar? %>
+          <%= image_tag post.user.avatar.to_s, class: 'rounded-full h-12 w-12 flex items-center justify-center' %>
+        <% else %>
+          <div><i class="fa-solid fa-circle-user fa-3x"></i></div>
+        <% end %>
       </div>
 
       <div class="my-auto">

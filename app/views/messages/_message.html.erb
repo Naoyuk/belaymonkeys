@@ -1,6 +1,11 @@
   <%= turbo_frame_tag message do %>
     <div class='grid grid-cols-4 gap-y-2'>
       <div class="<%= message_class(message) %>" id="<%= dom_id(message) %>">
+        <% if message.user.avatar? %>
+          <%= image_tag message.user.avatar.to_s, class: 'rounded-full h-8 w-8 flex items-center justify-center' %>
+        <% else %>
+          <i class="fa-solid fa-circle-user fa-2xl"></i>
+        <% end %>
         <p><%= simple_format(h(message.body)) %></p>
       </div>
     </div>
