@@ -10,7 +10,8 @@ class PictureUploader < CarrierWave::Uploader::Base
   if Rails.env.development? || Rails.env.test?
     storage :file
   else
-    storage :fog
+    # storage :fog
+    storage :file
   end
   # storage :fog
 
